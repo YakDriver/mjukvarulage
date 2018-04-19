@@ -1,25 +1,41 @@
 import sys
 import os
+import requests
+
+def run_query(query, headers): # A simple function to use requests.post to make the API call. Note the json= section.
+    request = requests.post('https://api.github.com/graphql', json={'query': query}, headers=headers)
+    if request.status_code == 200:
+        return request.json()
+    else:
+        raise Exception("Query failed to run by returning code of {}. {}".format(request.status_code, query))
 
 def main(*args):
     print("MJUKVARULAGE ----")
-    for arg in args:
-        try:
-            print("kwarg: {}={}".format(*arg.split('=')))
-        except (IndexError):
-            print("  arg: {}".format(arg))
+    print("Release/Version:", os.environ["VERSION"])
 
-    print("All the environment variables:")
-    print(os.environ,sep="\n")
+    headers = {"Authorization": os.environ["API_KEY"]}
 
-    print("Version:", os.environ["VERSION"])
-    print("Secure:", os.environ["SUPER_NEW_ENVIRONMENT_VARIABLE"])
+    # The GraphQL query (with a few aditional bits included) itself defined as a multi-line string.       
+    query = """
+    {
+    viewer {
+        login
+    }
+    rateLimit {
+        limit
+        cost
+        remaining
+        resetAt
+    }
+    }
+    """
 
-    if os.environ["SUPER_NEW_ENVIRONMENT_VARIABLE"] == "super_secure_stuff":
-        print("It worked!")
-    else:
-        print("It didn't work")
-        
+    result = run_query(query, headers) # Execute the query
+    remaining_rate_limit = result["data"]["rateLimit"]["remaining"] # Drill down the dictionary
+    print("Remaining rate limit - {}".format(remaining_rate_limit))
+
+    print("Data:",result["data"])
+
     return 0
 
 if __name__ == "__main__":
