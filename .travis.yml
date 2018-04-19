@@ -81,7 +81,9 @@ before_deploy:
   #- ls -hal
 deploy:
   - provider: script
-    script: python release_script.py tag=$VERSION
+    script: python release_script.py
+    tag: $VERSION
+    skip_cleanup: true
     on:
       branch: master
       repo: YakDriver/mjukvarulage
