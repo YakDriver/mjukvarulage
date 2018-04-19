@@ -12,6 +12,7 @@ def main(*args):
     print("All the environment variables:")
     print(os.environ,sep="\n")
 
+    print("Version:", os.environ["VERSION"])
     print("Secure:", os.environ["SUPER_NEW_ENVIRONMENT_VARIABLE"])
     return 0
 
