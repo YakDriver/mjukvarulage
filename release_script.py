@@ -9,6 +9,7 @@ def main(*args):
         except (IndexError):
             print("  arg: {}".format(arg))
 
+    print("Does this env var exist?",os.environ['xyzabc'])
     print("All the environment variables:")
     print(os.environ,sep="\n")
     return 0
