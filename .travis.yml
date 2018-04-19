@@ -82,7 +82,7 @@ before_deploy:
 deploy:
   - provider: script
     script: python release_script.py
-    tag: $VERSION
+    xyzabc: $VERSION
     skip_cleanup: true
     on:
       branch: master
