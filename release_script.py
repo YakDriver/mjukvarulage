@@ -1,4 +1,5 @@
 import sys
+import os
 
 def main(*args):
     print("MJUKVARULAGE ----")
@@ -8,6 +9,8 @@ def main(*args):
         except (IndexError):
             print("  arg: {}".format(arg))
 
+    print("All the environment variables:")
+    print(os.environ,sep="\n")
     return 0
 
 if __name__ == "__main__":
