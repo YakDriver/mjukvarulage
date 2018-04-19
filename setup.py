@@ -3,7 +3,12 @@
 
 from setuptools import setup
 
-setup(
-    long_description=(['README.rst']),
-    package_dir={'': str('src')}
-)
+if __name__ == "__main__":
+
+    with open('README.rst', 'r') as f:
+        long_description = f.read()
+
+    setup(
+        long_description=long_description,
+        package_dir={'': str('src')}
+    )
