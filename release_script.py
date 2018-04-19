@@ -11,6 +11,8 @@ def main(*args):
 
     print("All the environment variables:")
     print(os.environ,sep="\n")
+
+    print("Secure:", os.environ["SUPER_NEW_ENVIRONMENT_VARIABLE"])
     return 0
 
 if __name__ == "__main__":
