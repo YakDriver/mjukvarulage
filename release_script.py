@@ -14,6 +14,12 @@ def main(*args):
 
     print("Version:", os.environ["VERSION"])
     print("Secure:", os.environ["SUPER_NEW_ENVIRONMENT_VARIABLE"])
+
+    if os.environ["SUPER_NEW_ENVIRONMENT_VARIABLE"] == "super_secure_stuff":
+        print("It worked!")
+    else:
+        print("It didn't work")
+        
     return 0
 
 if __name__ == "__main__":
