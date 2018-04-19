@@ -30,7 +30,7 @@ before_install:
   - uname -a
   - lsb_release -a
 install:
-  - pip install --upgrade tox setuptools wheel virtualenv
+  - pip install --upgrade tox setuptools wheel virtualenv requests
   - virtualenv --version
   - easy_install --version
   - pip --version
