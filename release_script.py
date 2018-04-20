@@ -13,7 +13,7 @@ def main(*args):
     print("MJUKVARULAGE ----")
     print("Release/Version:", os.environ["VERSION"])
 
-    headers = {"Authorization": "token " + os.environ["API_KEY"]}
+    headers = {"Authorization": "bearer " + os.environ["API_KEY"]}
 
     # The GraphQL query (with a few aditional bits included) itself defined as a multi-line string.       
     query = """
